@@ -13,6 +13,9 @@ mongoose.connect(
 }).catch((err:any)=>{
   console.log(err)
 })
+app.get("/", (req, res)=>{
+  res.send("sent successfully");
+})
 app.use(blogRoutes);
 app.use(messagesRoutes);
 app.use(adminRoutes);
