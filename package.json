@@ -2,10 +2,11 @@
   "name": "brand-backend",
   "version": "1.0.0",
   "description": "",
+  "type":"commonjs",
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon index",
-    "start":"nodemon index.js"
+    "start":"node ./dist/index.js"
   },
   "author": "latifah",
   "license": "ISC",
