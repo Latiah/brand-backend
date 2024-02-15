@@ -14,7 +14,7 @@ admin.save().then((result)=>{
     res.status(500).json({error:"eror occured setting user data"})
 })
 
-if (!admin.email || !admin.password){
+if (!admin){
     res.status(500).json({error:"incorrect password or email"});
 }
 }
