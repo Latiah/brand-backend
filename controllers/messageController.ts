@@ -3,7 +3,7 @@ import {Message} from "../models/messages";
 
 const Add_message=(req:Request, res:Response)=>{
      const message = new Message({
-    name: "winny",
+    name: "WIZARD",
     email: "ishcha@2gmail.com",
     message: "hi hi there? ",
   });
