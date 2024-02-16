@@ -3,7 +3,10 @@ import express, {Application} from 'express';
 import mongoose from "mongoose";
 import blogRoutes from "./routes/blogRoutes";
 import messagesRoutes from "./routes/messagesRoutes";
-import adminRoutes from "./routes/adminRoutes";
+import { loginUser } from "./controllers/adminController";
+import {Request, Response} from 'express';
+import bodyParser from "body-parser";
+
 
 const app:Application = express();
 mongoose.connect(
@@ -13,12 +16,14 @@ mongoose.connect(
 }).catch((err:any)=>{
   console.log(err)
 })
+app.use(bodyParser.json());
+// Authentication endpoint
+app.post('/login', loginUser);
 app.use(blogRoutes);
 app.use(messagesRoutes);
-app.use(adminRoutes);
+app.use(express.json());
 
-
-const port:number| string = process.env.PORT || 4000;
+const port:number| string = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });

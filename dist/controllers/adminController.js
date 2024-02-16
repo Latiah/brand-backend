@@ -1,20 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Record_admin = void 0;
+exports.loginUser = void 0;
 const admin_1 = require("../models/admin");
-const Record_admin = (req, res) => {
-    const admin = new admin_1.Admin({
-        email: "kimtifah2@gmail.com",
-        password: "4563"
-    });
-    admin.save().then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).json({ error: "eror occured setting user data" });
-    });
-    if (!admin) {
-        res.status(500).json({ error: "incorrect password or email" });
+const loginUser = (req, res) => {
+    const { email, password } = req.body;
+    // Find user with matching email
+    const user = admin_1.users.find((user) => user.email === email);
+    // If user is found and password matches, return success message
+    if (user && user.password === password) {
+        res.json({ message: "correct input Login successful" });
+    }
+    else {
+        // If user is not found or password is incorrect, return error message
+        res.status(401).json({ message: "Invalid email or password" });
     }
 };
-exports.Record_admin = Record_admin;
+exports.loginUser = loginUser;

@@ -9,7 +9,7 @@ const MessageSchema:Schema=new Schema({
         type:String,
         required:true
     },
-    message:{
+    mesage:{
         type:String,
         required:true
     }

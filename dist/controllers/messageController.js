@@ -1,23 +1,27 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.delete_message = exports.single_message = exports.All_messages = exports.Add_message = void 0;
 const messages_1 = require("../models/messages");
-const Add_message = (req, res) => {
-    const message = new messages_1.Message({
-        name: "winny",
-        email: "ishcha@2gmail.com",
-        message: "hi hi there? ",
-    });
-    message
-        .save()
-        .then((result) => {
-        res.status(200).json(result);
-    })
-        .catch((err) => {
-        console.log(err);
-        res.status(500).json({ error: "error occured adding a message" });
-    });
-};
+const Add_message = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, email, mesage } = req.body;
+        const message = yield messages_1.Message.create({ name, email, mesage });
+        res.status(200).json(message);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+});
 exports.Add_message = Add_message;
 const All_messages = (req, res) => {
     messages_1.Message.find()
@@ -31,7 +35,8 @@ const All_messages = (req, res) => {
 };
 exports.All_messages = All_messages;
 const single_message = (req, res) => {
-    messages_1.Message.findById("65cc05b5683d32cc181484b1")
+    const { id } = req.params;
+    messages_1.Message.findById(id)
         .then((result) => {
         res.status(200).json(result);
     })
@@ -42,7 +47,8 @@ const single_message = (req, res) => {
 };
 exports.single_message = single_message;
 const delete_message = (req, res) => {
-    messages_1.Message.findByIdAndDelete("65cc066094d754d96c8fd3c1")
+    const { id } = req.params;
+    messages_1.Message.findByIdAndDelete(id)
         .then((result) => {
         res.status(200).json(result);
     })

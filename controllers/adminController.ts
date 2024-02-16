@@ -1,21 +1,17 @@
-import {Request, Response} from 'express';
-import {Admin} from "../models/admin";
-import admin from '../routes/adminRoutes';
-const Record_admin=(req:Request, res:Response)=>{
-    const admin= new Admin({
-        email:"kimtifah2@gmail.com",
-        password:"4563"
-    }) 
+import { Request, Response } from "express";
+import { User, users } from "../models/admin";
 
-admin.save().then((result)=>{
-    res.status(200).json(result);
-}).catch((err:any)=>{
-    console.log(err);
-    res.status(500).json({error:"eror occured setting user data"})
-})
+export const loginUser = (req: Request, res: Response) => {
+  const { email, password } = req.body;
 
-if (!admin){
-    res.status(500).json({error:"incorrect password or email"});
-}
-}
-export {Record_admin};
+  // Find user with matching email
+  const user = users.find((user) => user.email === email);
+
+  // If user is found and password matches, return success message
+  if (user && user.password === password) {
+    res.json({ message: "correct input Login successful" });
+  } else {
+    // If user is not found or password is incorrect, return error message
+    res.status(401).json({ message: "Invalid email or password" });
+  }
+};
