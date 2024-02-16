@@ -6,4 +6,5 @@ router.post("/add-blog", blogController.Add_blog);
 router.get("/all-blogs", blogController.All_blogs);
 router.get("/single-blog/:id", blogController.single_blog);
 router.delete("/delete-blog/:id", blogController.delete_blog);
+router.put("/update-blog/:id", blogController.update_blog);
 export default router;

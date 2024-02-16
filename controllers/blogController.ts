@@ -51,6 +51,21 @@ const delete_blog=(req:Request, res:Response):void =>{
        });
   
 }
+const update_blog = (req: Request, res: Response): void => {
+  const { id } = req.params;
+  const { title, description, photo } = req.body;
+  Blog.findByIdAndUpdate(id)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err: any) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ message: "An error occurred while Updating the blog." });
+    });
+};
+
 export {
-  All_blogs, single_blog, delete_blog, Add_blog
+  All_blogs, single_blog, delete_blog, Add_blog, update_blog
 };

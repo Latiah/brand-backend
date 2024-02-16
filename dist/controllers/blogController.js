@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Add_blog = exports.delete_blog = exports.single_blog = exports.All_blogs = void 0;
+exports.update_blog = exports.Add_blog = exports.delete_blog = exports.single_blog = exports.All_blogs = void 0;
 const blog_1 = require("../models/blog");
 const Add_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -62,3 +62,17 @@ const delete_blog = (req, res) => {
     });
 };
 exports.delete_blog = delete_blog;
+const update_blog = (req, res) => {
+    const { id } = req.params;
+    blog_1.Blog.findByIdAndUpdate(id)
+        .then((result) => {
+        res.status(200).json(result);
+    })
+        .catch((err) => {
+        console.log(err);
+        res
+            .status(500)
+            .json({ message: "An error occurred while Updating the blog." });
+    });
+};
+exports.update_blog = update_blog;
