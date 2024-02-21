@@ -64,6 +64,7 @@ const delete_blog = (req, res) => {
 exports.delete_blog = delete_blog;
 const update_blog = (req, res) => {
     const { id } = req.params;
+    const { title, description, photo } = req.body;
     blog_1.Blog.findByIdAndUpdate(id)
         .then((result) => {
         res.status(200).json(result);
