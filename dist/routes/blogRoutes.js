@@ -27,11 +27,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const authMiddleware_1 = require("../middleWare/authMiddleware");
 const blogController = __importStar(require("../controllers/blogController"));
 const router = express_1.default.Router();
-router.post("/add-blog", blogController.Add_blog);
-router.get("/all-blogs", blogController.All_blogs);
-router.get("/single-blog/:id", blogController.single_blog);
-router.delete("/delete-blog/:id", blogController.delete_blog);
-router.put("/update-blog/:id", blogController.update_blog);
+router.post("/add-blog", authMiddleware_1.verifyToken, blogController.Add_blog);
+router.get("/all-blogs", authMiddleware_1.verifyToken, blogController.All_blogs);
+router.get("/single-blog/:id", authMiddleware_1.verifyToken, blogController.single_blog);
+router.delete("/delete-blog/:id", authMiddleware_1.verifyToken, blogController.delete_blog);
+router.put("/update-blog/:id", authMiddleware_1.verifyToken, blogController.update_blog);
 exports.default = router;

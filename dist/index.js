@@ -45,7 +45,7 @@ app.post("/auth/register", (req, res) => __awaiter(void 0, void 0, void 0, funct
         if (isEmailAllReadyExist) {
             res.status(400).json({
                 status: 400,
-                message: "Email all ready in use",
+                message: "Email already used",
             });
             return;
         }
@@ -106,13 +106,6 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
             });
             return;
         }
-        // ** if the email and password is valid create a token
-        /*
-        To create a token JsonWebToken (JWT) receive's 3 parameter
-        1. Payload -  This contains the claims or data you want to include in the token.
-        2. Secret Key - A secure key known only to the server used for signing the token.
-        3. expiration -  Additional settings like token expiration or algorithm selection.
-        */
         // !! Don't Provide the secret openly, keep it in the .env file. I am Keeping Open just for demonstration
         // ** This is our JWT Token
         const token = jsonwebtoken_1.default.sign({ _id: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist._id, email: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.email }, "YOUR_SECRET", {
@@ -134,45 +127,6 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
 }));
-// Middleware function for token verification
-function verifyToken(req, res, next) {
-    const token = req.headers.authorization;
-    if (!token) {
-        return res.status(401).json({
-            success: false,
-            message: "Token is missing",
-        });
-    }
-    jsonwebtoken_1.default.verify(token, "YOUR_SECRET", (err, decoded) => {
-        if (err) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid token",
-            });
-        }
-        // Attach decoded user information to the request object
-        req.user = decoded;
-        next();
-    });
-}
-// Apply middleware to protected routes
-app.get("/protected-route", verifyToken, (req, res) => {
-    // Access user information from req.user
-    res.json({
-        success: true,
-        message: "Access granted to protected route",
-        user: req.user,
-    });
-});
-// Sample protected route that requires token verification
-app.post("/protected-route2", verifyToken, (req, res) => {
-    // Access user information from req.user
-    res.json({
-        success: true,
-        message: "Access granted to another protected route",
-        user: req.user,
-    });
-});
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
