@@ -1,11 +1,17 @@
 import {Request, Response} from 'express';
 import {Blog} from '../models/blog';
+import {blogValidations} from '../validation/validations'
 
 const Add_blog = async (req: Request, res: Response) => {
   try {
-    const {title, description, photo} = req.body; 
-    const blog = await Blog.create({title, description, photo}); 
-
+    const valid = blogValidations(req.body); 
+    if(valid.error){
+    res.status(400).json(valid.error);
+    // console.log(valid.error);
+    }
+   
+    const { title, description, photo } = req.body; 
+    const blog = await Blog.create({ title, description, photo }); 
     res.status(200).json(blog); 
   } catch (error) {
     console.log(error);
@@ -52,6 +58,10 @@ const delete_blog=(req:Request, res:Response):void =>{
   
 }
 const update_blog = (req: Request, res: Response): void => {
+   const valid = blogValidations(req.body);
+   if (valid.error) {
+     res.status(400).json(valid);
+   }
   const { id } = req.params;
   const { title, description, photo } = req.body;
   Blog.findByIdAndUpdate(id)

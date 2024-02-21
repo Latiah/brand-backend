@@ -8,7 +8,7 @@ import {Request, Response, NextFunction} from 'express';
 import bodyParser from "body-parser";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-
+import { loginValidations } from './validation/validations';
 const app:Application = express();
 mongoose.connect(
   "mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority"
@@ -29,7 +29,10 @@ app.post("/auth/register", async (req, res) => {
   try {
     // ** Get The User Data From Body ;
     const user = req.body;
-
+ const valid = loginValidations(req.body);
+ if (valid.error) {
+   res.status(400).json(valid);
+ }
     // ** destructure the information from user;
     const {  email, password } = user;
 
@@ -82,7 +85,10 @@ app.post("/auth/login", async (req, res) => {
   try {
     // ** Get The User Data From Body ;
     const user = req.body;
-
+  const valid = loginValidations(req.body);
+  if (valid.error) {
+    res.status(400).json(valid);
+  }
     // ** destructure the information from user;
     const { email, password } = user;
 

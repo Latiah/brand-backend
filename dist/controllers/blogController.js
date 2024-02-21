@@ -11,8 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.update_blog = exports.Add_blog = exports.delete_blog = exports.single_blog = exports.All_blogs = void 0;
 const blog_1 = require("../models/blog");
+const validations_1 = require("../validation/validations");
 const Add_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const valid = (0, validations_1.blogValidations)(req.body);
+        if (valid.error) {
+            res.status(400).json(valid.error);
+            // console.log(valid.error);
+        }
         const { title, description, photo } = req.body;
         const blog = yield blog_1.Blog.create({ title, description, photo });
         res.status(200).json(blog);
@@ -63,6 +69,10 @@ const delete_blog = (req, res) => {
 };
 exports.delete_blog = delete_blog;
 const update_blog = (req, res) => {
+    const valid = (0, validations_1.blogValidations)(req.body);
+    if (valid.error) {
+        res.status(400).json(valid);
+    }
     const { id } = req.params;
     const { title, description, photo } = req.body;
     blog_1.Blog.findByIdAndUpdate(id)

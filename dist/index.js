@@ -21,6 +21,7 @@ const admin_1 = require("./models/admin");
 const body_parser_1 = __importDefault(require("body-parser"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const validations_1 = require("./validation/validations");
 const app = (0, express_1.default)();
 mongoose_1.default.connect("mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority").then(() => {
     console.log("the database connection was successful");
@@ -36,6 +37,10 @@ app.post("/auth/register", (req, res) => __awaiter(void 0, void 0, void 0, funct
     try {
         // ** Get The User Data From Body ;
         const user = req.body;
+        const valid = (0, validations_1.loginValidations)(req.body);
+        if (valid.error) {
+            res.status(400).json(valid);
+        }
         // ** destructure the information from user;
         const { email, password } = user;
         // ** Check the email all ready exist  in database or not ;
@@ -82,6 +87,10 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         // ** Get The User Data From Body ;
         const user = req.body;
+        const valid = (0, validations_1.loginValidations)(req.body);
+        if (valid.error) {
+            res.status(400).json(valid);
+        }
         // ** destructure the information from user;
         const { email, password } = user;
         // ** Check the (email/user) exist  in database or not ;

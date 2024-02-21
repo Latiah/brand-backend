@@ -11,8 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.delete_message = exports.single_message = exports.All_messages = exports.Add_message = void 0;
 const messages_1 = require("../models/messages");
+const validations_1 = require("../validation/validations");
 const Add_message = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const valid = (0, validations_1.messageValidations)(req.body);
+        if (valid.error) {
+            res.status(400).json(valid);
+        }
+        console.log(valid.error);
         const { name, email, mesage } = req.body;
         const message = yield messages_1.Message.create({ name, email, mesage });
         res.status(200).json(message);

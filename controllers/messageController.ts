@@ -1,8 +1,14 @@
 import {Request, Response} from 'express';
 import {Message} from "../models/messages";
+import {messageValidations} from "../validation/validations"
 
 const Add_message=async(req:Request, res:Response)=>{
   try {
+      const valid = messageValidations(req.body);
+      if (valid.error) {
+        res.status(400).json(valid);
+      }
+      console.log(valid.error);
     const {name, email, mesage} = req.body; 
     const message = await Message.create({name, email, mesage}); 
 
