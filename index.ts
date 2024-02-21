@@ -7,7 +7,7 @@ import {User} from './models/admin'
 import {Request, Response, NextFunction} from 'express';
 import bodyParser from "body-parser";
 import jwt from 'jsonwebtoken';
-
+import bcrypt from 'bcrypt';
 
 const app:Application = express();
 mongoose.connect(
@@ -24,6 +24,7 @@ app.use(blogRoutes);
 app.use(messagesRoutes);
 app.use(express.json());
 
+const saltRounds = 10; // Number of salt rounds for bcrypt
 app.post("/auth/register", async (req, res) => {
   try {
     // ** Get The User Data From Body ;
@@ -45,18 +46,18 @@ app.post("/auth/register", async (req, res) => {
         status: 400,
         message: "Email already used",
       });
-      return;
+     // return;
     }
 
     // ** if not create a new user ;
     // !! Don't save the password as plain text in db . I am saving just for demonstration.
     // ** You can use bcrypt to hash the plain password.
-
+ const hashedPassword = await bcrypt.hash(password, saltRounds);
     // now create the user;
     const newUser = await User.create({
       
       email,
-      password,
+      password:hashedPassword,
     });
 
     // Send the newUser as  response;
@@ -87,7 +88,7 @@ app.post("/auth/login", async (req, res) => {
 
     // ** Check the (email/user) exist  in database or not ;
     const isUserExist = await User.findOne({
-      email: email,
+      email
     });
 
     // ** if there is not any user we will send user not found;
@@ -102,8 +103,8 @@ app.post("/auth/login", async (req, res) => {
 
     // ** if the (user) exist  in database we will check the password is valid or not ;
     // **  compare the password in db and the password sended in the request body
-
-    const isPasswordMatched = isUserExist?.password === password;
+const isPasswordMatched = await
+bcrypt.compare(password, isUserExist.password);    
 
     // ** if not matched send response that wrong password;
 
@@ -116,7 +117,7 @@ app.post("/auth/login", async (req, res) => {
       return;
     }
 
- 
+
 
     // !! Don't Provide the secret openly, keep it in the .env file. I am Keeping Open just for demonstration
 

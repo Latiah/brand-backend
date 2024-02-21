@@ -20,6 +20,7 @@ const messagesRoutes_1 = __importDefault(require("./routes/messagesRoutes"));
 const admin_1 = require("./models/admin");
 const body_parser_1 = __importDefault(require("body-parser"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const app = (0, express_1.default)();
 mongoose_1.default.connect("mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority").then(() => {
     console.log("the database connection was successful");
@@ -30,6 +31,7 @@ app.use(body_parser_1.default.json());
 app.use(blogRoutes_1.default);
 app.use(messagesRoutes_1.default);
 app.use(express_1.default.json());
+const saltRounds = 10; // Number of salt rounds for bcrypt
 app.post("/auth/register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // ** Get The User Data From Body ;
@@ -47,15 +49,16 @@ app.post("/auth/register", (req, res) => __awaiter(void 0, void 0, void 0, funct
                 status: 400,
                 message: "Email already used",
             });
-            return;
+            // return;
         }
         // ** if not create a new user ;
         // !! Don't save the password as plain text in db . I am saving just for demonstration.
         // ** You can use bcrypt to hash the plain password.
+        const hashedPassword = yield bcrypt_1.default.hash(password, saltRounds);
         // now create the user;
         const newUser = yield admin_1.User.create({
             email,
-            password,
+            password: hashedPassword,
         });
         // Send the newUser as  response;
         res.status(200).json({
@@ -83,7 +86,7 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
         const { email, password } = user;
         // ** Check the (email/user) exist  in database or not ;
         const isUserExist = yield admin_1.User.findOne({
-            email: email,
+            email
         });
         // ** if there is not any user we will send user not found;
         if (!isUserExist) {
@@ -96,7 +99,7 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
         }
         // ** if the (user) exist  in database we will check the password is valid or not ;
         // **  compare the password in db and the password sended in the request body
-        const isPasswordMatched = (isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.password) === password;
+        const isPasswordMatched = yield bcrypt_1.default.compare(password, isUserExist.password);
         // ** if not matched send response that wrong password;
         if (!isPasswordMatched) {
             res.status(400).json({
