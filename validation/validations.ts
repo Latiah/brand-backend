@@ -1,5 +1,4 @@
 import Joi from "Joi";
-
 //blog validations
 export const blogValidations =(blogs:{title:string, description:string, photo:string})=>{
     const blogSchema=Joi.object({
