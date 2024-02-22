@@ -142,6 +142,7 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 }));
 //swagger setup
+app.get("/api-docs");
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerJsdoc));
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
