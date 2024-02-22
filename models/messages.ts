@@ -9,10 +9,10 @@ const MessageSchema:Schema=new Schema({
         type:String,
         required:true
     },
-    mesage:{
+    message:{
         type:String,
         required:true
     }
 })
-type message= InferSchemaType<typeof MessageSchema>;
-export const Message=model<message>("Message", MessageSchema);
+type mesage= InferSchemaType<typeof MessageSchema>;
+export const Message=model<mesage>("Message", MessageSchema);

@@ -1,4 +1,3 @@
-//fNqsrpAUmHIox43t;
 import express, {Application} from 'express';
 import mongoose from "mongoose";
 import blogRoutes from "./routes/blogRoutes";
@@ -9,6 +8,9 @@ import bodyParser from "body-parser";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { loginValidations } from './validation/validations';
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
+const swaggerJsdoc=YAML.load("./yamal.yaml")
 const app:Application = express();
 mongoose.connect(
   "mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority"
@@ -65,7 +67,7 @@ app.post("/auth/register", async (req, res) => {
 
     // Send the newUser as  response;
     res.status(200).json({
-      status: 201,
+      status: 200,
       success: true,
       message: " User created Successfully",
       user: newUser,
@@ -151,6 +153,11 @@ bcrypt.compare(password, isUserExist.password);
     });
   }
 });
+
+//swagger setup
+
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJsdoc));
 
 const port:number| string = process.env.PORT || 3000;
 app.listen(port, () => {

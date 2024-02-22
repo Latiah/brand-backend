@@ -26,13 +26,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//verifyToken;
 const express_1 = __importDefault(require("express"));
-//import {Request, Response} from 'express';
-const authMiddleware_1 = require("../middleWare/authMiddleware");
 const messageController = __importStar(require("../controllers/messageController"));
 const messag = express_1.default.Router();
-messag.post("/Add-message", authMiddleware_1.verifyToken, messageController.Add_message);
-messag.get("/All-messages", authMiddleware_1.verifyToken, messageController.All_messages);
-messag.get("/single-message/:id", authMiddleware_1.verifyToken, messageController.single_message);
-messag.delete("/delete-message", authMiddleware_1.verifyToken, messageController.delete_message);
+messag.post("/Add-message", messageController.Add_message);
+messag.get("/All-messages", messageController.All_messages);
+messag.get("/single-message/:id", messageController.single_message);
+messag.delete("/delete-message/:id", messageController.delete_message);
 exports.default = messag;

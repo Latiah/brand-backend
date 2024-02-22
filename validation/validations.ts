@@ -24,12 +24,12 @@ export const loginValidations = (login:{
 export const messageValidations = (messages: {
   name: string;
   email: string;
-  mesage: string;
+  message: string;
 }) => {
   const messageSchema = Joi.object({
     name: Joi.string().required().min(5).max(20),
     email: Joi.string().required().email(),
-    mesage: Joi.string(),
+    message: Joi.string().required(),
   });
   return messageSchema.validate(messages);
 };

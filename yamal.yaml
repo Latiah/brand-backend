@@ -1,0 +1,291 @@
+swagger: "2.0"
+info:
+  title: Portfolio Back-End API
+  description: Backend API Documentation for Portfolio
+  version: 1.0
+  contact:
+    email: kimtifah2@gmail.com
+  servers:
+    -url: http://localhost:3000
+    description: THis is my local Server
+    -url: https://back-end-bjsh.onrender.com
+    description: This is my original URL
+schemes: [https,http]
+securityDefinitions:
+  token:
+    type: apiKey
+    name: Authorization
+    in: header
+tags:
+    - name: Blogs
+      description: Endpoints related to managing blogs
+    - name: Messages
+      description: Endpoints related to messages 
+    - name: Admin
+      description: Endpoints related to Admin        
+paths:
+  /all-blogs:
+    get:
+      tags:
+          - Blogs
+      summary: Returns a list of blogs.
+      description: Blogs already written and stored in the database.
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              title:
+                type: string
+              description:
+                type: string
+              photo:
+                type: string
+
+  /single-blog/{blogId}:
+    get:
+      tags:
+          - Blogs
+      summary: Returns a blog by ID.
+      description: Returns a Specific Blog.
+      parameters:
+        - name: blogId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+
+  /add-blog:
+    post:
+      tags:
+          - Blogs
+      summary: Adds a new blog.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: "#/components/schemas/Blog"
+      responses:
+        '200':
+          description: OK
+
+  /delete-blog/{blogId}:
+    delete:
+      tags:
+          - Blogs
+      summary: Deletes a blog by ID.
+      description: Deletes a Specific Blog.
+      parameters:
+        - name: blogId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+
+  
+              
+#Returns all messages
+  /all-messages:
+    get:
+      tags:
+          - Messages
+      summary: Returns a list of all messages received.
+      description: All messages that were sent through the contact form
+      responses:
+        200:    # status code
+          description: Successul Response
+          schema: 
+            type: object
+            properties:
+              id:
+                type: integer
+              title:
+                type: string
+                description:
+                type: string
+                photo:
+                type: string
+
+
+
+#Get Request with path id
+  /single-message/{id}:
+    get:
+      tags:
+          - Messages
+      summary: Returns a messages by ID.
+      description: Returns a Specific message
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+            format: int64
+      responses: 
+        '200':
+          description: OK
+         
+
+
+#Post json/body & Body required
+  # /add-blog:
+  #   post:
+  #     summary: Adds a new blog
+  #     produces:
+  #       - application/json
+  #     consumes:
+  #       - application/json
+  #     parameters:
+  #       - in: body
+  #         name: body
+  #         schema:
+  #           type: object
+  #           required:
+  #             - name
+  #             - id
+  #           properties:
+  #             id:
+  #               type: integer
+  #             name:
+  #               type: string
+  #     responses:
+  #       '200':
+  #         description: OK
+
+
+#Defining Body Reference
+  /add-message:
+    post:
+      tags:
+           - Messages
+      summary: Add a new message
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+           $ref: "#/components/schemas/Message"
+      responses:
+        '200':
+          description: OK
+     
+#Get Request with path id
+  /delete-message/{id}:
+    delete:
+      tags:
+          - Messages
+      summary: Deletes a message by ID.
+      description: Deletes a Specific message
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+            format: int64
+      responses: 
+        '200':
+          description: OK   
+#Defining Body Reference
+  /auth/register:
+    post:
+      tags:
+           - Admin
+      summary: Register here
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+           $ref: "#/components/schemas/Users"
+      responses:
+        '200':
+          description: OK
+
+#Defining Body Reference
+  /auth/login:
+    post:
+      tags:
+           - Admin
+      summary: Log in if you already signed up
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+           $ref: "#/components/schemas/Users"
+      responses:
+        '200':
+          description: OK          
+
+components:
+  schemas:
+    Blog:
+      type: object
+      required:
+        - title
+        - description
+        - photo
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        photo:
+          type: string
+
+components:
+  schemas:
+    Message:
+      type: object
+      required:
+        - name
+        - email
+        - mesage
+      properties:
+        name:
+          type: string
+          email: 
+          type: string
+          mesage: 
+          type: string           
+
+components:
+  schemas:
+    Users:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+          email: 
+          type: string
+          password: 
+          type: string            

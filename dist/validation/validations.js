@@ -29,7 +29,7 @@ const messageValidations = (messages) => {
     const messageSchema = Joi_1.default.object({
         name: Joi_1.default.string().required().min(5).max(20),
         email: Joi_1.default.string().required().email(),
-        mesage: Joi_1.default.string(),
+        message: Joi_1.default.string().required(),
     });
     return messageSchema.validate(messages);
 };

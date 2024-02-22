@@ -18,10 +18,12 @@ const Add_message = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         if (valid.error) {
             res.status(400).json(valid);
         }
-        console.log(valid.error);
-        const { name, email, mesage } = req.body;
-        const message = yield messages_1.Message.create({ name, email, mesage });
-        res.status(200).json(message);
+        const { name, email, message } = req.body;
+        const messages = yield messages_1.Message.create({ name, email, message });
+        res.status(200).json({ status: 200,
+            messages,
+            message: "user created"
+        });
     }
     catch (error) {
         console.log(error);
@@ -32,7 +34,10 @@ exports.Add_message = Add_message;
 const All_messages = (req, res) => {
     messages_1.Message.find()
         .then((result) => {
-        res.status(200).json(result);
+        res.status(200).json({ status: 200,
+            result,
+            message: "all messages retrieved"
+        });
     })
         .catch((err) => {
         console.log(err);
@@ -44,7 +49,9 @@ const single_message = (req, res) => {
     const { id } = req.params;
     messages_1.Message.findById(id)
         .then((result) => {
-        res.status(200).json(result);
+        res.status(200).json({ status: 200,
+            result,
+            message: "single message retrieved" });
     })
         .catch((err) => {
         console.log(err);
@@ -56,7 +63,7 @@ const delete_message = (req, res) => {
     const { id } = req.params;
     messages_1.Message.findByIdAndDelete(id)
         .then((result) => {
-        res.status(200).json(result);
+        res.status(200).json({ message: "message was deleted successfully" });
     })
         .catch((err) => {
         console.log(err);

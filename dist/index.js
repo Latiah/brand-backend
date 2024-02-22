@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//fNqsrpAUmHIox43t;
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const blogRoutes_1 = __importDefault(require("./routes/blogRoutes"));
@@ -22,6 +21,9 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const validations_1 = require("./validation/validations");
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const yamljs_1 = __importDefault(require("yamljs"));
+const swaggerJsdoc = yamljs_1.default.load("./yamal.yaml");
 const app = (0, express_1.default)();
 mongoose_1.default.connect("mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority").then(() => {
     console.log("the database connection was successful");
@@ -67,7 +69,7 @@ app.post("/auth/register", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
         // Send the newUser as  response;
         res.status(200).json({
-            status: 201,
+            status: 200,
             success: true,
             message: " User created Successfully",
             user: newUser,
@@ -139,6 +141,8 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
 }));
+//swagger setup
+app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerJsdoc));
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
