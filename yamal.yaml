@@ -8,14 +8,21 @@ info:
   servers:
     -url: http://localhost:3000
     description: THis is my local Server
-    -url: https://back-end-bjsh.onrender.com
+    -url: 
     description: This is my original URL
-schemes: [https,http]
-securityDefinitions:
-  token:
-    type: apiKey
-    name: Authorization
-    in: header
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API Key Authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer Authentication
+security:
 tags:
     - name: Blogs
       description: Endpoints related to managing blogs

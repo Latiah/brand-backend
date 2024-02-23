@@ -7,12 +7,12 @@ import {blogValidations} from '../validation/validations';
 
 const router :Router= express.Router();
 
-router.post("/add-blog", blogController.Add_blog);
+router.post("/add-blog", verifyToken, blogController.Add_blog);
 
 router.get("/all-blogs", blogController.All_blogs);
 
 router.get("/single-blog/:id", blogController.single_blog);
-router.delete("/delete-blog/:id", blogController.delete_blog);
+router.delete("/delete-blog/:id", verifyToken, blogController.delete_blog);
 
 router.put(
   "/update-blog/:id", 
