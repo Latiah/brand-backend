@@ -10,8 +10,7 @@ info:
     description: THis is my local Server
     -url: 
     description: This is my original URL
-components:
-  securitySchemes:
+securitySchemes:
     ApiKeyAuth:
       type: apiKey
       in: header
@@ -22,7 +21,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: Bearer Authentication
-security:
+
 tags:
     - name: Blogs
       description: Endpoints related to managing blogs
