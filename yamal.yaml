@@ -21,7 +21,7 @@ securitySchemes:
       scheme: bearer
       bearerFormat: JWT
       description: Bearer Authentication
-
+security:
 tags:
     - name: Blogs
       description: Endpoints related to managing blogs
