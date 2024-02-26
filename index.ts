@@ -156,7 +156,7 @@ bcrypt.compare(password, isUserExist.password);
 
 //swagger setup
 
-app.get("/api-docs");
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJsdoc));
 
 const port:number| string = process.env.PORT || 3000;
