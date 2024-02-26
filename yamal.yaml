@@ -6,10 +6,11 @@ info:
   contact:
     email: kimtifah2@gmail.com
 securityDefinitions:
-  apiKey:
+  Bearer: 
     type: apiKey
     name: Authorization
     in: header
+    description: "Enter your bearer token in format Bearer"
  
 tags:
     - name: Blogs
@@ -62,7 +63,7 @@ paths:
       tags:
           - Blogs
       security:
-          - apiKey: []  
+          - Bearer: []  
       summary: Adds a new blog.
       produces:
         - application/json
@@ -82,7 +83,7 @@ paths:
       tags:
           - Blogs
       security:
-          - apiKey: []      
+          - Bearer: []      
       summary: Deletes a blog by ID.
       description: Deletes a Specific Blog.
       parameters:
@@ -104,7 +105,7 @@ paths:
       tags:
           - Messages
       security:
-          - apiKey: []       
+          - Bearer: []       
       summary: Returns a list of all messages received.
       description: All messages that were sent through the contact form
       responses:
@@ -130,7 +131,7 @@ paths:
       tags:
           - Messages
       security:
-          - apiKey: []    
+          - Bearer: []   
       summary: Returns a messages by ID.
       description: Returns a Specific message
       parameters:
@@ -196,8 +197,7 @@ paths:
     delete:
       tags:
           - Messages
-      security:
-          - apiKey: []    
+         
       summary: Deletes a message by ID.
       description: Deletes a Specific message
       parameters:
