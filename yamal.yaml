@@ -1,17 +1,16 @@
 swagger: "2.0"
 info:
   title: Portfolio Back-End API
-  description: Backend API Documentation for Portfolio
+  description: AUTHOR - AKIMANA LAIFAH -Backend API Documentation for Portfolio
   version: 1.0
   contact:
     email: kimtifah2@gmail.com
-  servers:
-    -url: http://localhost:3000
-    description: THis is my local Server
-    -url: 
-    description: This is my original URL
-
-
+securityDefinitions:
+  apiKey:
+    type: apiKey
+    name: Authorization
+    in: header
+ 
 tags:
     - name: Blogs
       description: Endpoints related to managing blogs
@@ -63,7 +62,7 @@ paths:
       tags:
           - Blogs
       security:
-        - bearerAuth: []    
+          - apiKey: []  
       summary: Adds a new blog.
       produces:
         - application/json
@@ -83,7 +82,7 @@ paths:
       tags:
           - Blogs
       security:
-        - bearerAuth: []    
+          - apiKey: []      
       summary: Deletes a blog by ID.
       description: Deletes a Specific Blog.
       parameters:
@@ -105,7 +104,7 @@ paths:
       tags:
           - Messages
       security:
-        - bearerAuth: []    
+          - apiKey: []       
       summary: Returns a list of all messages received.
       description: All messages that were sent through the contact form
       responses:
@@ -131,7 +130,7 @@ paths:
       tags:
           - Messages
       security:
-        - bearerAuth: []    
+          - apiKey: []    
       summary: Returns a messages by ID.
       description: Returns a Specific message
       parameters:
@@ -198,7 +197,7 @@ paths:
       tags:
           - Messages
       security:
-        - bearerAuth: []    
+          - apiKey: []    
       summary: Deletes a message by ID.
       description: Deletes a Specific message
       parameters:
@@ -274,13 +273,13 @@ components:
       required:
         - name
         - email
-        - mesage
+        - message
       properties:
         name:
           type: string
           email: 
           type: string
-          mesage: 
+          message: 
           type: string           
 
 components:
@@ -295,19 +294,3 @@ components:
           type: string
           password: 
           type: string          
-
-components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: API Key Authentication
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: Bearer Authentication
-security:
-  - ApiKeyAuth: []
-  - bearerAuth: []
