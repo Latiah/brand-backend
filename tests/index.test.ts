@@ -32,6 +32,13 @@ describe("server testing", () => {
   });
 });
 
+describe("server testing", () => {
+  it("should return success", async () => {
+    const res = await request(app).get("/");
+    expect(res.status).toEqual(200);
+  });
+});
+
 describe(" blogs testing", () => {
   const blogId = "65dcacb8b83924e439de661d";
   const blogid="65dcacb8b83924e43";
@@ -54,21 +61,15 @@ describe(" blogs testing", () => {
     const res = await request(app).get(`/single-blog/${blogId}`);
     expect(res.status).toEqual(200);
   });
-  /*it("should update blog and return success ", async () => {
-    const updateBlog = {
-      title: "heloo  how is life is",
-      description: "today is sunday and I am doing testing formmm my apis",
-      photo: "whatii.jpg",
-    };
+  it("should update blog and return success ", async () => {
     const res = await request(app)
-      .put(`/update-blog/${blogid}`)
-      .send(updateBlog);
+      .put(`/update-blog/${blogId}`)
     expect(res.status).toEqual(200);
   });
   it("should  delete a blog and return success ", async () => {
-    const res = await request(app).delete(`/delete-blog/${blogid}`);
+    const res = await request(app).delete(`/delete-blog/${blogId}`);
     expect(res.status).toEqual(200);
-  });*/
+  });
 });
 
 describe(" messages api testing", () => {

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/45</span>
+                <span class='fraction'>36/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">78.57% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/14</span>
+                <span class='fraction'>11/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.5% </span>
+                <span class="strong">77.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/40</span>
+                <span class='fraction'>31/40</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -189,10 +189,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -202,19 +202,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,11 +267,11 @@ const single_blog = (req: Request, res: Response) =&gt; {
     });
 };
 &nbsp;
-const delete_blog = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response): void =&gt; {
-  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-<span class="cstat-no" title="statement not covered" >  Blog.findByIdAndDelete(id)</span>
-    .then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {
-<span class="cstat-no" title="statement not covered" >      res.status(200).json(result);</span>
+const delete_blog = (req: Request, res: Response): void =&gt; {
+  const { id } = req.params;
+  Blog.findByIdAndDelete(id)
+    .then((result) =&gt; {
+      res.status(200).json(result);
     })
     .catch(<span class="fstat-no" title="function not covered" >(e</span>rr: any) =&gt; {
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
@@ -280,20 +280,20 @@ const delete_blog = <span class="fstat-no" title="function not covered" >(r</spa
         .json({ error: "An error occurred while deleting the blog." });
     });
 };
-const update_blog = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response): void =&gt; {
-  const valid = <span class="cstat-no" title="statement not covered" >blogValidations(req.body);</span>
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (valid.error) {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(400).json(valid.error);</span>
+const update_blog = (req: Request, res: Response): void =&gt; {
+  const valid = blogValidations(req.body);
+  if (valid.error) {
+    res.status(400).json(valid.error);
   }
-  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-  const { title, description, photo } = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >  Blog.findByIdAndUpdate(id)</span>
-    .then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {
-<span class="cstat-no" title="statement not covered" >      res.status(200).json(result);</span>
+  const { id } = req.params;
+  const { title, description, photo } = req.body;
+  Blog.findByIdAndUpdate(id)
+    .then((result) =&gt; {
+      res.status(200).json(result);
     })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rr: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.log(err);</span>
-<span class="cstat-no" title="statement not covered" >      res</span>
+    .catch((err: any) =&gt; {
+      console.log(err);
+      res
         .status(500)
         .json({ message: "An error occurred while Updating the blog." });
     });
@@ -307,7 +307,7 @@ export { All_blogs, single_blog, delete_blog, Add_blog, update_blog };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-26T16:36:34.370Z
+                at 2024-02-26T20:00:16.660Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
