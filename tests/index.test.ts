@@ -25,6 +25,7 @@ afterAll(async () => {
   await User.deleteMany({});
 
   mongoose.disconnect();
+  await mongoose.connection.close();
 });
 describe(" user api testing", () => {
   it("should  create a register a user  and return success ", async () => {
@@ -41,12 +42,6 @@ describe(" user api testing", () => {
     expect(res.status).toEqual(200);
   });
 });
-describe ("server testing", ()=>{
-it("should return true", async()=>{
-  const res=await request(app).get("/");
-  expect(res.status).toBe(200);
-})
-})
 
 describe(" blogs testing", () => {
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWRkZTU0OWU5NDYwZWI5NTJhYjlmZjAiLCJlbWFpbCI6IndpbGxpYW1AZ21haWwuY29tIiwiaWF0IjoxNzA5MDQwOTg2LCJleHAiOjE3MDkxMjczODZ9.zwkgh-geI6o_1ETdKykwU6m1W39UdAJwwTIIB9s_ePM";

@@ -5,7 +5,7 @@ info:
   version: 1.0
   contact:
     email: kimtifah2@gmail.com
-<<<<<<< HEAD
+
   securityDefinitions: {
     Bearer: {
       type: 'apiKey',
@@ -19,15 +19,7 @@ info:
       Bearer: [],
     },
   ]
-=======
-securityDefinitions:
-  Bearer: 
-    type: apiKey
-    name: Authorization
-    in: header
-    description: "Enter your bearer token in format Bearer"
->>>>>>> origin
- 
+
 tags:
     - name: Blogs
       description: Endpoints related to managing blogs
@@ -78,12 +70,10 @@ paths:
     post:
       tags:
           - Blogs
-<<<<<<< HEAD
-      
-=======
+
       security:
           - Bearer: []  
->>>>>>> origin
+
       summary: Adds a new blog.
       produces:
         - application/json
@@ -102,12 +92,10 @@ paths:
     delete:
       tags:
           - Blogs
-<<<<<<< HEAD
-           
-=======
+
       security:
           - Bearer: []      
->>>>>>> origin
+
       summary: Deletes a blog by ID.
       description: Deletes a Specific Blog.
       parameters:
@@ -128,12 +116,10 @@ paths:
     get:
       tags:
           - Messages
-<<<<<<< HEAD
-            
-=======
+
       security:
           - Bearer: []       
->>>>>>> origin
+
       summary: Returns a list of all messages received.
       description: All messages that were sent through the contact form
       responses:
@@ -158,12 +144,10 @@ paths:
     get:
       tags:
           - Messages
-<<<<<<< HEAD
-          
-=======
+
       security:
           - Bearer: []   
->>>>>>> origin
+
       summary: Returns a messages by ID.
       description: Returns a Specific message
       parameters:

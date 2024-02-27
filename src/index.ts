@@ -66,8 +66,8 @@ app.post("/auth/register", async (req, res) => {
     });
 
     // Send the newUser as  response;
-    res.status(200).json({
-      status: 200,
+    res.status(201).json({
+      status: 201,
       success: true,
       message: " User created Successfully",
       user: newUser,
@@ -163,3 +163,5 @@ const port:number| string = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+export default app;
