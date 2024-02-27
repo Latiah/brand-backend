@@ -21,8 +21,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await User.deleteMany({});
-await Blog.deleteMany({});
-await Message.deleteMany({});
+
   mongoose.disconnect();
 });
 describe("server testing", () => {
@@ -32,22 +31,17 @@ describe("server testing", () => {
   });
 });
 
-describe("server testing", () => {
-  it("should return success", async () => {
-    const res = await request(app).get("/");
-    expect(res.status).toEqual(200);
-  });
-});
 
 describe(" blogs testing", () => {
   const blogId = "65dcacb8b83924e439de661d";
-  const blogid="65dcacb8b83924e43";
+
+   const newBlog = {
+     title: "heloo the guys hii",
+     description: "today is sunday and I am doing tests for my apis",
+     photo: "what.jpg",
+   };
   it("should  create a blog and return success ", async () => {
-    const newBlog = {
-      title: "heloo the guys hii",
-      description: "today is sunday and I am doing tests for my apis",
-      photo: "what.jpg",
-    };
+    
 
     const res = await request(app).post(`/add-blog`).send(newBlog);
   
@@ -63,12 +57,13 @@ describe(" blogs testing", () => {
   });
   it("should update blog and return success ", async () => {
     const res = await request(app)
-      .put(`/update-blog/${blogId}`)
+      .put(`/update-blog/${blogId}`).send(newBlog);
     expect(res.status).toEqual(200);
   });
   it("should  delete a blog and return success ", async () => {
     const res = await request(app).delete(`/delete-blog/${blogId}`);
     expect(res.status).toEqual(200);
+    return;
   });
 });
 
