@@ -7,7 +7,6 @@ import { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import {Comment} from "./models/comments"
 import { loginValidations } from "../validation/validations";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
@@ -150,8 +149,6 @@ app.post("/auth/login", async (req, res) => {
 });
 
 //swagger setup
-
-app.get("/api-docs");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJsdoc));
 
 export default app;
