@@ -16,7 +16,7 @@ const Add_blog = async (req: Request, res: Response) => {
     console.log(error);
     res.status(500).json(error);
   }
-};
+}
 const All_blogs = (req: Request, res: Response) => {
   Blog.find()
     .then((result) => {
@@ -72,7 +72,7 @@ const update_blog = (req: Request, res: Response): void => {
       console.log(err);
       res
         .status(500)
-        .json({ message: "An error occurred while Updating the blog." });
+        .json({ error: "An error occurred while Updating the blog." });
     });
 };
 

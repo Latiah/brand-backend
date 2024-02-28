@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>36/45</span>
+                <span class='fraction'>39/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.57% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>11/14</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.5% </span>
+                <span class="strong">85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/40</span>
+                <span class='fraction'>34/40</span>
             </div>
         
             
@@ -175,40 +175,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,7 +239,7 @@ const Add_blog = async (req: Request, res: Response) =&gt; {
 <span class="cstat-no" title="statement not covered" >    console.log(error);</span>
 <span class="cstat-no" title="statement not covered" >    res.status(500).json(error);</span>
   }
-};
+}
 const All_blogs = (req: Request, res: Response) =&gt; {
   Blog.find()
     .then((result) =&gt; {
@@ -259,9 +259,9 @@ const single_blog = (req: Request, res: Response) =&gt; {
     .then((result) =&gt; {
       res.status(200).json({ result, message: "single blog retrieved" });
     })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rr: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.log(err);</span>
-<span class="cstat-no" title="statement not covered" >      res</span>
+    .catch((err: any) =&gt; {
+      console.log(err);
+      res
         .status(500)
         .json({ error: "An error occured while retrieving one blog" });
     });
@@ -273,17 +273,17 @@ const delete_blog = (req: Request, res: Response): void =&gt; {
     .then((result) =&gt; {
       res.status(200).json(result);
     })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rr: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.log(err);</span>
-<span class="cstat-no" title="statement not covered" >      res</span>
+    .catch((err: any) =&gt; {
+      console.log(err);
+      res
         .status(500)
         .json({ error: "An error occurred while deleting the blog." });
     });
 };
 const update_blog = (req: Request, res: Response): void =&gt; {
   const valid = blogValidations(req.body);
-  if (valid.error) {
-    res.status(400).json(valid.error);
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (valid.error) {
+<span class="cstat-no" title="statement not covered" >    res.status(400).json(valid.error);</span>
   }
   const { id } = req.params;
   const { title, description, photo } = req.body;
@@ -295,7 +295,7 @@ const update_blog = (req: Request, res: Response): void =&gt; {
       console.log(err);
       res
         .status(500)
-        .json({ message: "An error occurred while Updating the blog." });
+        .json({ error: "An error occurred while Updating the blog." });
     });
 };
 &nbsp;
@@ -307,7 +307,7 @@ export { All_blogs, single_blog, delete_blog, Add_blog, update_blog };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-26T20:00:16.660Z
+                at 2024-02-28T20:05:06.437Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

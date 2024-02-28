@@ -12,7 +12,6 @@ function verifyToken(req: Request, res: Response, next: NextFunction) {
 
   jwt.verify(token as string, "YOUR_SECRET", (err: any, decoded: any) => {
     if (err) {
-      console.log(err);
       return res.status(401).json({
         success: false,
         message: "Invalid token",
