@@ -17,6 +17,7 @@ const Add_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const valid = (0, validations_1.blogValidations)(req.body);
         if (valid.error) {
             res.status(400).json(valid.error);
+            return;
         }
         const { title, description, photo } = req.body;
         const blog = yield blog_1.Blog.create({ title, description, photo });
@@ -71,6 +72,7 @@ const update_blog = (req, res) => {
     const valid = (0, validations_1.blogValidations)(req.body);
     if (valid.error) {
         res.status(400).json(valid.error);
+        return;
     }
     const { id } = req.params;
     const { title, description, photo } = req.body;

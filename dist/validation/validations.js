@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.messageValidations = exports.loginValidations = exports.blogValidations = void 0;
-const Joi_1 = __importDefault(require("joi"));
+const Joi_1 = __importDefault(require("Joi"));
 //blog validations
 const blogValidations = (blogs) => {
     const blogSchema = Joi_1.default.object({

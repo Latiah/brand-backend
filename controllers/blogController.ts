@@ -7,7 +7,7 @@ const Add_blog = async (req: Request, res: Response) => {
     const valid = blogValidations(req.body); 
     if(valid.error){
     res.status(400).json(valid.error);
-    
+    return;
     }
    
     const { title, description, photo } = req.body; 
@@ -61,6 +61,7 @@ const update_blog = (req: Request, res: Response): void => {
    const valid = blogValidations(req.body);
    if (valid.error) {
      res.status(400).json(valid.error);
+     return;
    }
   const { id } = req.params;
   const { title, description, photo } = req.body;

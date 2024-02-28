@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   title: Portfolio Back-End API
-  description: AUTHOR - AKIMANA LAIFAH -Backend API Documentation for Portfolio
+  description: This documentation contains Backend API Documentation for my Portfolio  ~ AUTHOR ~ AKIMANA LATIFAH 
   version: 1.0
   contact:
     email: kimtifah2@gmail.com
@@ -197,7 +197,8 @@ paths:
     delete:
       tags:
           - Messages
-         
+      security:
+          - Bearer: []       
       summary: Deletes a message by ID.
       description: Deletes a Specific message
       parameters:
