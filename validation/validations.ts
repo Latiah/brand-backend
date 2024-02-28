@@ -1,8 +1,8 @@
 import Joi from "Joi";
 //blog validations
-export const blogValidations =(blogs:{title:string, description:string, photo:string})=>{
+export const blogValidations =(blogs:{title:string, description:string, photo:string}) =>{
     const blogSchema=Joi.object({
-  title: Joi.string().required().min(5).max(20),
+  title: Joi.string().required().min(5).max(50),
   description: Joi.string().required().min(10).max(100),
   photo: Joi.string().required()
 })
@@ -28,7 +28,7 @@ export const messageValidations = (messages: {
   const messageSchema = Joi.object({
     name: Joi.string().required().min(5).max(20),
     email: Joi.string().required().email(),
-    message: Joi.string().required(),
+    message: Joi.string().required().max(50),
   });
   return messageSchema.validate(messages);
 };
