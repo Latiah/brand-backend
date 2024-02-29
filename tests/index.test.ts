@@ -61,7 +61,7 @@ describe ("server testing", () =>{
 //blogs api testing
 describe(" blogs testing", () => {
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWRmM2M3ZjgwMzViNDYwYzk5MTM4MWQiLCJlbWFpbCI6ImFraW1hbmFAMmdtYWlsLmNvbSIsImlhdCI6MTcwOTEyODg1MywiZXhwIjoxNzA5MjE1MjUzfQ.xrSiiLvvyiPbe2znzvGeG3TqgJfhDfvynvAz8TK9WCM";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUwYjc4ODBmMmZjZWMzMmVlYjZlNTQiLCJlbWFpbCI6ImVtbWE0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTIyNTg5Mn0.inIvXi8d07WLn2hmj1JtMQRrnCVGMwj5a9ghIim3S1o";
   const blogId = "65dcacb8b83924e439de661d";
 
   const newBlog = {
@@ -167,7 +167,7 @@ describe(" blogs testing", () => {
 describe(" messages api testing", () => {
   let messageId = "65dcacb8b83924e439de661d";
   let messagetoken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWRmM2M3ZjgwMzViNDYwYzk5MTM4MWQiLCJlbWFpbCI6ImFraW1hbmFAMmdtYWlsLmNvbSIsImlhdCI6MTcwOTEyODg1MywiZXhwIjoxNzA5MjE1MjUzfQ.xrSiiLvvyiPbe2znzvGeG3TqgJfhDfvynvAz8TK9WCM";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUwYjc4ODBmMmZjZWMzMmVlYjZlNTQiLCJlbWFpbCI6ImVtbWE0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTIyNTg5Mn0.inIvXi8d07WLn2hmj1JtMQRrnCVGMwj5a9ghIim3S1o";
   it("should  add a message and return success ", async () => {
     const newMessage = {
       name: "Ruthsifah",

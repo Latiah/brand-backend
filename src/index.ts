@@ -123,10 +123,7 @@ app.post("/auth/login", async (req, res) => {
     // ** This is our JWT Token
     const token = jwt.sign(
       { _id: isUserExist?._id, email: isUserExist?.email },
-      "YOUR_SECRET",
-      {
-        expiresIn: "30d",
-      }
+      "YOUR_SECRET"
     );
 
     // send the response

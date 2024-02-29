@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">85.29% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/34</span>
+                <span class='fraction'>29/34</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.18% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/11</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.33% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/30</span>
+                <span class='fraction'>25/30</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -146,9 +146,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,28 +160,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -206,10 +206,10 @@ const Add_message = async (req: Request, res: Response) =&gt; {
   }
 };
 &nbsp;
-const All_messages = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response) =&gt; {
-<span class="cstat-no" title="statement not covered" >  Message.find()</span>
-    .then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {
-<span class="cstat-no" title="statement not covered" >      res</span>
+const All_messages = (req: Request, res: Response) =&gt; {
+  Message.find()
+    .then((result) =&gt; {
+      res
         .status(200)
         .json({ status: 200, result, message: "all messages retrieved" });
     })
@@ -220,29 +220,29 @@ const All_messages = <span class="fstat-no" title="function not covered" >(r</sp
         .json({ error: "error occured while retrieving all messages" });
     });
 };
-const single_message = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response) =&gt; {
-  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-<span class="cstat-no" title="statement not covered" >  Message.findById(id)</span>
-    .then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {
-<span class="cstat-no" title="statement not covered" >      res</span>
+const single_message = (req: Request, res: Response) =&gt; {
+  const { id } = req.params;
+  Message.findById(id)
+    .then((result) =&gt; {
+      res
         .status(200)
         .json({ status: 200, result, message: "single message retrieved" });
     })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rr: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.log(err);</span>
-<span class="cstat-no" title="statement not covered" >      res.status(500).json({ error: "error occured retrieving one message" });</span>
+    .catch((err: any) =&gt; {
+      console.log(err);
+      res.status(500).json({ error: "error occured retrieving one message" });
     });
 };
 &nbsp;
-const delete_message = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response) =&gt; {
-  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-<span class="cstat-no" title="statement not covered" >  Message.findByIdAndDelete(id)</span>
-    .then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {
-<span class="cstat-no" title="statement not covered" >      res.status(200).json({ message: "message was deleted successfully" });</span>
+const delete_message = (req: Request, res: Response) =&gt; {
+  const { id } = req.params;
+  Message.findByIdAndDelete(id)
+    .then((result) =&gt; {
+      res.status(200).json({ message: "message was deleted successfully" });
     })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rr: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.log(err);</span>
-<span class="cstat-no" title="statement not covered" >      res.status(500).json({ error: "error occured while deleting a message" });</span>
+    .catch((err: any) =&gt; {
+      console.log(err);
+      res.status(500).json({ error: "error occured while deleting a message" });
     });
 };
 export { Add_message, All_messages, single_message, delete_message };
@@ -253,7 +253,7 @@ export { Add_message, All_messages, single_message, delete_message };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-29T15:49:05.764Z
+                at 2024-02-29T17:02:58.727Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
