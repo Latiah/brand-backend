@@ -1,12 +1,9 @@
 name: Hello world
 
 on: 
- push:
-  branches:
-   - "test-badge"
-   pull_request:
-    branches:
-     - 'test-badges'
+  push:
+   branches:
+   - 'test-badge'
 
 jobs:
   hello:
