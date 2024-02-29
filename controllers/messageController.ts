@@ -15,7 +15,7 @@ const Add_message=async(req:Request, res:Response)=>{
     res.status(200).json(
       {status:200,
        messages, 
-      message:"user created"
+      message:"message  was created successfully"
     }); 
   } catch (error) {
     console.log(error);

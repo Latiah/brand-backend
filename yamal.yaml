@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   title: Portfolio Back-End API
-  description: This documentation contains Backend API Documentation for my Portfolio  ~ AUTHOR ~ AKIMANA LATIFAH 
+  description: This documentation contains backend API documentation for my portfolio  ~ AUTHOR ~ AKIMANA LATIFAH 
   version: 1.0
   contact:
     email: kimtifah2@gmail.com
@@ -178,7 +178,7 @@ paths:
     post:
       tags:
            - Messages
-      summary: Add a new message
+      summary: Add a new message to send it fill in your information (name, email and your message) 
       produces:
         - application/json
       consumes:
@@ -216,7 +216,7 @@ paths:
     post:
       tags:
            - Admin
-      summary: Register here
+      summary: Register here with an email and password
       produces:
         - application/json
       consumes:
@@ -235,7 +235,7 @@ paths:
     post:
       tags:
            - Admin
-      summary: Log in if you already signed up
+      summary: Log in by entering your email and password if you already signed up 
       produces:
         - application/json
       consumes:
@@ -258,8 +258,6 @@ components:
         - description
         - photo
       properties:
-        id:
-          type: integer
         title:
           type: string
         description:
@@ -276,11 +274,13 @@ components:
         - email
         - message
       properties:
+        id:
+          type: integer
         name:
           type: string
-          email: 
+        email: 
           type: string
-          message: 
+        message: 
           type: string           
 
 components:
@@ -291,7 +291,9 @@ components:
         - email
         - password
       properties:
-          email: 
+        id:
+         type: integer
+        email: 
           type: string
-          password: 
+        password: 
           type: string          

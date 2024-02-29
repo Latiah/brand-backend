@@ -12,7 +12,7 @@ const Add_blog = async (req: Request, res: Response) => {
    
     const { title, description, photo } = req.body; 
     const blog = await Blog.create({ title, description, photo }); 
-    res.status(200).json(blog); 
+    res.status(200).json({blog, message:"new blog created"}); 
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -47,7 +47,7 @@ const delete_blog=(req:Request, res:Response):void =>{
   const {id}=req.params
      Blog.findByIdAndDelete(id)
        .then((result) => {
-         res.status(200).json(result);
+         res.status(200).json({ message: "Blog was deleted successfully" });
        })
        .catch((err: any) => {
          console.log(err);

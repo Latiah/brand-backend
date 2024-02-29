@@ -22,7 +22,7 @@ const Add_message = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const messages = yield messages_1.Message.create({ name, email, message });
         res.status(200).json({ status: 200,
             messages,
-            message: "user created"
+            message: "message  was created successfully"
         });
     }
     catch (error) {

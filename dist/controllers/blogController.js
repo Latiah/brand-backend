@@ -21,7 +21,7 @@ const Add_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const { title, description, photo } = req.body;
         const blog = yield blog_1.Blog.create({ title, description, photo });
-        res.status(200).json(blog);
+        res.status(200).json({ blog, message: "new blog created" });
     }
     catch (error) {
         console.log(error);
@@ -58,7 +58,7 @@ const delete_blog = (req, res) => {
     const { id } = req.params;
     blog_1.Blog.findByIdAndDelete(id)
         .then((result) => {
-        res.status(200).json(result);
+        res.status(200).json({ message: "Blog was deleted successfully" });
     })
         .catch((err) => {
         console.log(err);
