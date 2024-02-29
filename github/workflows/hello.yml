@@ -1,0 +1,17 @@
+name: Hello world
+
+on: 
+ push:
+  branches:
+   - "test-badge"
+   pull_request:
+    branches:
+     - 'test-badges'
+
+jobs:
+  hello:
+   runs-on: ubuntu-latest
+
+   steps:
+    - name: Hello step     
+      run: echo "hello world"
