@@ -33,17 +33,16 @@ describe(" user api testing", () => {
     const res = await request(app).post(`/auth/register`).send(aUser);
     expect(res.status).toEqual(201);
   });
-
- it("should  create a register a user  and return success ", async () => {
+ it("should  log in a registered  user  and return success ", async () => {
    const res = await request(app).post(`/auth/login`).send(aUser);
    expect(res.status).toEqual(200);
 });
-it("should  create a register a user  and return success ", async () => {
+it("log in unregistered user  and return not found ", async () => {
   const res = await request(app).post(`/auth/login`).send({email:"pitt@gmail.com", password:"yuuuuuu"});
   expect(res.status).toEqual(404);
    expect(res.body).toHaveProperty("message", "User not found");
 });
-it("should  create a register a user  and return success ", async () => {
+it("should  log in a user with incorrect password   and return bad request (wrong password) ", async () => {
   const res = await request(app)
     .post(`/auth/login`)
     .send({ email: "emma4@gmail.com", password: "yuuuuuu" });
@@ -78,7 +77,7 @@ describe(" blogs testing", () => {
       .set("Authorization", `Bearer ${token}`);
     expect(res.status).toEqual(201);
   });
-   it("should  create a blog and return success ", async () => {
+   it("can  not create a blog without having token ", async () => {
      const res = await request(app)
        .post(`/add-blog`)
        .send(newBlog)
@@ -89,7 +88,7 @@ describe(" blogs testing", () => {
     const res = await request(app).get(`/all-blogs`);
     expect(res.status).toEqual(200);
   });
-  it("should  retrieve all  blogs and return success ", async () => {
+  it(" should return error message on displaying  single  blog  ", async () => {
     const res = await request(app).get(`/single-blog/id`);
        expect(res.statusCode).toBe(500);
     expect(res.body).toHaveProperty(
@@ -110,7 +109,7 @@ describe(" blogs testing", () => {
       .set("Authorization", `Bearer ${token}`);
     expect(res.status).toEqual(200);
   });
-  it("should update blog and return success ", async () => {
+  it("error occured during blog update blog when and return success ", async () => {
     const res = await request(app)
       .put(`/update-blog/id`)
       .send(newBlog)
@@ -141,7 +140,7 @@ describe(" blogs testing", () => {
       .set("Authorization", `Bearer ${token}`);
     expect(res.status).toEqual(200);
   });
-  it("should  delete a blog and return success ", async () => {
+  it(" error occurred while deleting a blog  ", async () => {
     const res = await request(app)
       .delete(`/delete-blog/id`)
       .set("Authorization", `Bearer ${token}`);

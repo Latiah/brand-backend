@@ -34,13 +34,13 @@ app.post("/auth/register", async (req, res) => {
     const { email, password } = user;
 
     // ** Check the email all ready exist  in database or not ;
-    // ** Import the user model from "./models/user";
+    
 
     const isEmailAllReadyExist = await User.findOne({
       email: email,
     });
 
-    // ** Add a condition if the user exist we will send the response as email all ready exist
+    // ** Add a condition if the user exist we will send the response as email already exist
     if (isEmailAllReadyExist) {
       res.status(400).json({
         status: 400,
@@ -49,9 +49,7 @@ app.post("/auth/register", async (req, res) => {
       // return;
     }
 
-    // ** if not create a new user ;
-    // !! Don't save the password as plain text in db . I am saving just for demonstration.
-    // ** You can use bcrypt to hash the plain password.
+   
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     // now create the user;
     const newUser = await User.create({
@@ -79,7 +77,7 @@ app.post("/auth/register", async (req, res) => {
 });
 app.post("/auth/login", async (req, res) => {
   try {
-    // ** Get The User Data From Body ;
+   
     const user = req.body;
     const valid = loginValidations(req.body);
     if (valid.error) {
@@ -88,7 +86,7 @@ app.post("/auth/login", async (req, res) => {
     // ** destructure the information from user;
     const { email, password } = user;
 
-    // ** Check the (email/user) exist  in database or not ;
+    // ** Check the (email) exist  in database or not ;
     const isUserExist = await User.findOne({
       email,
     });
@@ -104,7 +102,7 @@ app.post("/auth/login", async (req, res) => {
     }
 
     // ** if the (user) exist  in database we will check the password is valid or not ;
-    // **  compare the password in db and the password sended in the request body
+    // **  compare the password in db and the password sent in the request body
     const isPasswordMatched = await bcrypt.compare(
       password,
       isUserExist.password
@@ -121,14 +119,13 @@ app.post("/auth/login", async (req, res) => {
       return;
     }
 
-    // !! Don't Provide the secret openly, keep it in the .env file. I am Keeping Open just for demonstration
-
+    
     // ** This is our JWT Token
     const token = jwt.sign(
       { _id: isUserExist?._id, email: isUserExist?.email },
       "YOUR_SECRET",
       {
-        expiresIn: "1d",
+        expiresIn: "30d",
       }
     );
 
