@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1709226179016" clover="3.2.0">
-  <project timestamp="1709226179016" name="All files">
-    <metrics statements="173" coveredstatements="158" conditionals="22" coveredconditionals="15" methods="35" coveredmethods="33" elements="230" coveredelements="206" complexity="0" loc="173" ncloc="173" packages="6" files="10" classes="10"/>
+<coverage generated="1709234703956" clover="3.2.0">
+  <project timestamp="1709234703956" name="All files">
+    <metrics statements="173" coveredstatements="156" conditionals="22" coveredconditionals="14" methods="35" coveredmethods="33" elements="230" coveredelements="203" complexity="0" loc="173" ncloc="173" packages="6" files="10" classes="10"/>
     <package name="middleWare">
       <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="authMiddleware.ts" path="C:\Users\LATIFAH\OneDrive\Desktop\Brand\brand-backend\middleWare\authMiddleware.ts">
@@ -47,9 +47,9 @@
       </file>
     </package>
     <package name="src">
-      <metrics statements="55" coveredstatements="51" conditionals="13" coveredconditionals="9" methods="5" coveredmethods="5"/>
+      <metrics statements="55" coveredstatements="49" conditionals="13" coveredconditionals="8" methods="5" coveredmethods="5"/>
       <file name="index.ts" path="C:\Users\LATIFAH\OneDrive\Desktop\Brand\brand-backend\src\index.ts">
-        <metrics statements="55" coveredstatements="51" conditionals="13" coveredconditionals="9" methods="5" coveredmethods="5"/>
+        <metrics statements="55" coveredstatements="49" conditionals="13" coveredconditionals="8" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -77,13 +77,13 @@
         <line num="31" count="0" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
-        <line num="44" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="45" count="1" type="stmt"/>
+        <line num="44" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="45" count="0" type="stmt"/>
         <line num="53" count="1" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
-        <line num="72" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
         <line num="78" count="3" type="stmt"/>
         <line num="79" count="3" type="stmt"/>
         <line num="81" count="3" type="stmt"/>

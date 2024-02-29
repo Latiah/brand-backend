@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.98% </span>
+                <span class="strong">89.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>53/57</span>
+                <span class='fraction'>51/57</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.72% </span>
+                <span class="strong">89.09% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>51/55</span>
+                <span class='fraction'>49/55</span>
             </div>
         
             
@@ -257,22 +257,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -283,8 +267,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -406,8 +406,8 @@ app.post("/auth/register", async (req, res) =&gt; {
     });
 &nbsp;
     // ** Add a condition if the user exist we will send the response as email already exist
-    if (isEmailAllReadyExist) {
-      res.status(400).json({
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isEmailAllReadyExist) {
+<span class="cstat-no" title="statement not covered" >      res.status(400).json({</span>
         status: 400,
         message: "Email already used",
       });
@@ -423,7 +423,7 @@ app.post("/auth/register", async (req, res) =&gt; {
     });
 &nbsp;
     // Send the newUser as  response;
-<span class="cstat-no" title="statement not covered" >    res.status(201).json({</span>
+    res.status(201).json({
       status: 201,
       success: true,
       message: " User created Successfully",
@@ -431,10 +431,10 @@ app.post("/auth/register", async (req, res) =&gt; {
     });
   } catch (error: any) {
     // console the error to debug
-    console.log(error);
+<span class="cstat-no" title="statement not covered" >    console.log(error);</span>
 &nbsp;
     // Send the error message to the client
-    res.status(400).json({
+<span class="cstat-no" title="statement not covered" >    res.status(400).json({</span>
       status: 400,
       message: error.message.toString(),
     });
@@ -520,7 +520,7 @@ export default app;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-29T17:02:58.727Z
+                at 2024-02-29T19:25:03.469Z
             </div>
         <script src="../prettify.js"></script>
         <script>
