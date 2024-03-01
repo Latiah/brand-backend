@@ -64,6 +64,7 @@ app.post("/auth/register", async (req, res) => {
       message: " User created Successfully",
       user: newUser,
     });
+    return;
   } catch (error: any) {
     // console the error to debug
     console.log(error);
