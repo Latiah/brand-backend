@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - fix-tests
+permissions:
+ contents: read
+ actions: read
+ checks: write
 
 jobs:
   tests:
