@@ -25,6 +25,9 @@ app.use(bodyParser.json());
 app.use(blogRoutes);
 app.use(messagesRoutes);
 app.use(express.json());
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).send({ message: "Welcome to my  portifolio api endpoints " });
+});
 
 const saltRounds = 10; // Number of salt rounds for bcrypt
 app.post("/auth/register", async (req, res) => {
