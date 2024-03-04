@@ -1,5 +1,7 @@
 [![Latifah's GitHub stats](https://github-readme-stats.vercel.app/api?username=Latiah&show_icons=true&theme=radical)](https://github.com/Latiah/brand-backend/github-readme-stats)
 
+Testing coverage
+[![Coverage Status](https://coveralls.io/repos/github/Latiah/brand-backend/badge.svg?branch=fix-tests)](https://coveralls.io/github/Latiah/brand-backend?branch=fix-tests)
 
 TOOLS USED
 
