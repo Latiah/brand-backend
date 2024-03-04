@@ -7,12 +7,13 @@ import { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import cors from "cors";
 import { loginValidations } from "../validation/validations";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 const swaggerJsdoc = YAML.load("./yamal.yaml");
 const app: Application = express();
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(blogRoutes);
 app.use(messagesRoutes);
@@ -34,7 +35,6 @@ app.post("/auth/register", async (req, res) => {
     const { email, password } = user;
 
     // ** Check the email all ready exist  in database or not ;
-    
 
     const isEmailAllReadyExist = await User.findOne({
       email: email,
@@ -49,7 +49,6 @@ app.post("/auth/register", async (req, res) => {
       // return;
     }
 
-   
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     // now create the user;
     const newUser = await User.create({
@@ -78,7 +77,6 @@ app.post("/auth/register", async (req, res) => {
 });
 app.post("/auth/login", async (req, res) => {
   try {
-   
     const user = req.body;
     const valid = loginValidations(req.body);
     if (valid.error) {
@@ -120,7 +118,6 @@ app.post("/auth/login", async (req, res) => {
       return;
     }
 
-    
     // ** This is our JWT Token
     const token = jwt.sign(
       { _id: isUserExist?._id, email: isUserExist?.email },
