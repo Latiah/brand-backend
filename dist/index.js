@@ -20,20 +20,28 @@ const admin_1 = require("./models/admin");
 const body_parser_1 = __importDefault(require("body-parser"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const cors_1 = __importDefault(require("cors"));
 const validations_1 = require("./validation/validations");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const yamljs_1 = __importDefault(require("yamljs"));
 const swaggerJsdoc = yamljs_1.default.load("./yamal.yaml");
 const app = (0, express_1.default)();
-mongoose_1.default.connect("mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority").then(() => {
+mongoose_1.default
+    .connect("mongodb+srv://kimtifah2:fNqsrpAUmHIox43t@cluster0.gw0mecl.mongodb.net/portifolio?retryWrites=true&w=majority")
+    .then(() => {
     console.log("the database connection was successful");
-}).catch((err) => {
+})
+    .catch((err) => {
     console.log(err);
 });
 app.use(body_parser_1.default.json());
+app.use((0, cors_1.default)());
 app.use(blogRoutes_1.default);
 app.use(messagesRoutes_1.default);
 app.use(express_1.default.json());
+app.get("/", (req, res) => {
+    res.status(200).send({ message: "Welcome to my  portifolio api endpoints " });
+});
 const saltRounds = 10; // Number of salt rounds for bcrypt
 app.post("/auth/register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -97,7 +105,7 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
         const { email, password } = user;
         // ** Check the (email/user) exist  in database or not ;
         const isUserExist = yield admin_1.User.findOne({
-            email
+            email,
         });
         // ** if there is not any user we will send user not found;
         if (!isUserExist) {
