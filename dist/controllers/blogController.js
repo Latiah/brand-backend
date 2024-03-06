@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.update_blog = exports.Add_blog = exports.delete_blog = exports.single_blog = exports.All_blogs = void 0;
+exports.update_blog = exports.Add_blog = exports.delete_blog = exports.single_blog = exports.All_blogs = exports.shareBlog = exports.likeBlog = void 0;
 const blog_1 = require("../models/blog");
 const validations_1 = require("../validation/validations");
 const Add_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -21,7 +21,7 @@ const Add_blog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const { title, description, photo } = req.body;
         const blog = yield blog_1.Blog.create({ title, description, photo });
-        res.status(200).json({ blog, message: "new blog created" });
+        res.status(201).json({ blog, message: "new blog created" });
     }
     catch (error) {
         console.log(error);
@@ -36,7 +36,9 @@ const All_blogs = (req, res) => {
     })
         .catch((err) => {
         console.log(err);
-        res.status(500).json({ error: "An error occured while displaying all blogs" });
+        res
+            .status(500)
+            .json({ error: "An error occured while displaying all blogs" });
     });
 };
 exports.All_blogs = All_blogs;
@@ -88,3 +90,39 @@ const update_blog = (req, res) => {
     });
 };
 exports.update_blog = update_blog;
+const likeBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { blogId } = req.params;
+    try {
+        const blog = yield blog_1.Blog.findById(blogId);
+        if (!blog) {
+            res.status(404).json({ message: "Blog not found" });
+            return;
+        }
+        blog.likes++;
+        yield blog.save();
+        res.json({ message: "Blog liked successfully", likes: blog.likes });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+exports.likeBlog = likeBlog;
+const shareBlog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { blogId } = req.params;
+    try {
+        const blog = yield blog_1.Blog.findById(blogId);
+        if (!blog) {
+            res.status(404).json({ message: "Blog not found" });
+            return;
+        }
+        blog.shares++;
+        yield blog.save();
+        res.json({ message: "Blog shared successfully", shares: blog.shares });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+exports.shareBlog = shareBlog;

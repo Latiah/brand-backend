@@ -13,8 +13,8 @@ const Joi_1 = __importDefault(require("joi"));
 //blog validations
 const blogValidations = (blogs) => {
   const blogSchema = Joi_1.default.object({
-    title: Joi_1.default.string().required().min(5).max(50),
-    description: Joi_1.default.string().required().min(10).max(100),
+    title: Joi_1.default.string().required(),
+    description: Joi_1.default.string().required(),
     photo: Joi_1.default.string().required(),
   });
   return blogSchema.validate(blogs);
@@ -32,9 +32,9 @@ exports.loginValidations = loginValidations;
 //
 const messageValidations = (messages) => {
   const messageSchema = Joi_1.default.object({
-    name: Joi_1.default.string().required().min(5).max(20),
+    name: Joi_1.default.string().required().min(3).max(20),
     email: Joi_1.default.string().required().email(),
-    message: Joi_1.default.string().required().max(50),
+    message: Joi_1.default.string().required().max(100),
   });
   return messageSchema.validate(messages);
 };

@@ -17,6 +17,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const blogRoutes_1 = __importDefault(require("./routes/blogRoutes"));
 const messagesRoutes_1 = __importDefault(require("./routes/messagesRoutes"));
 const admin_1 = require("./models/admin");
+const comments_1 = require("./models/comments");
+const blogController_1 = require("./controllers/blogController");
 const body_parser_1 = __importDefault(require("body-parser"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -130,9 +132,7 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
         }
         // !! Don't Provide the secret openly, keep it in the .env file. I am Keeping Open just for demonstration
         // ** This is our JWT Token
-        const token = jsonwebtoken_1.default.sign({ _id: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist._id, email: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.email }, "YOUR_SECRET", {
-            expiresIn: "1d",
-        });
+        const token = jsonwebtoken_1.default.sign({ _id: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist._id, email: isUserExist === null || isUserExist === void 0 ? void 0 : isUserExist.email }, "YOUR_SECRET");
         // send the response
         res.status(200).json({
             status: 200,
@@ -148,6 +148,33 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
             message: error.message.toString(),
         });
     }
+}));
+app.post("/single-blog/:blogId/like", blogController_1.likeBlog);
+app.post("/single-blog/:blogId/share", blogController_1.shareBlog);
+app.post("/add-comment", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, comment } = req.body;
+        const comments = yield comments_1.Comment.create({ name, comment });
+        res.status(201).json({ comments, message: "Added a comment" });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}));
+app.get("/single-blog/:blogId/all-comments", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    comments_1.Comment.find()
+        .then((result) => {
+        res
+            .status(200)
+            .json({ status: 200, result, message: "all comments retrieved" });
+    })
+        .catch((err) => {
+        console.log(err);
+        res
+            .status(500)
+            .json({ error: "error occured while retrieving all comments" });
+    });
 }));
 //swagger setup
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerJsdoc));
