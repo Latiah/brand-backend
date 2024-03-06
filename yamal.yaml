@@ -58,6 +58,75 @@ paths:
         '200':
           description: OK
 
+  /single-blog/{blogId}/like:
+    post:
+      tags:
+          - Blogs
+      summary: Returns a blog by ID.
+      description: Returns a Specific Blog.
+      parameters:
+        - name: blogId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK        
+
+  /single-blog/{blogId}/share:
+    post:
+      tags:
+          - Blogs
+      summary: shares a blog by using it's ID.
+      description: shares a Specific Blog.
+      parameters:
+        - name: blogId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+
+  /add-comment:
+    post:
+      tags:
+          - Blogs
+      summary: adds a comment on  a blog .
+      description: adds a comment on a Specific Blog.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: "#/components/schemas/comment"
+      responses:
+        '200':
+          description: OK  
+           
+  /single-blog/{blogId}/all-comments:
+    get:
+      tags:
+          - Blogs
+      summary: retuns  all comments on  a blog .
+      description: returns all comments on a Specific Blog.
+      parameters:
+        - name: blogId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK    
   /add-blog:
     post:
       tags:

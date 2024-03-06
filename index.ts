@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import blogRoutes from "./routes/blogRoutes";
 import messagesRoutes from "./routes/messagesRoutes";
 import { User } from "./models/admin";
+import { Comment } from "./models/comments";
+import { likeBlog, shareBlog } from "./controllers/blogController";
 import { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
@@ -138,10 +140,7 @@ app.post("/auth/login", async (req, res) => {
     // ** This is our JWT Token
     const token = jwt.sign(
       { _id: isUserExist?._id, email: isUserExist?.email },
-      "YOUR_SECRET",
-      {
-        expiresIn: "1d",
-      }
+      "YOUR_SECRET"
     );
 
     // send the response
@@ -159,7 +158,33 @@ app.post("/auth/login", async (req, res) => {
     });
   }
 });
+app.post("/single-blog/:blogId/like", likeBlog);
+app.post("/single-blog/:blogId/share", shareBlog);
+app.post("/add-comment", async (req, res) => {
+  try {
+    const { name, comment } = req.body;
+    const comments = await Comment.create({ name, comment });
+    res.status(201).json({ comments, message: "Added a comment" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
 
+app.get("/single-blog/:blogId/all-comments", async (req, res) => {
+  Comment.find()
+    .then((result) => {
+      res
+        .status(200)
+        .json({ status: 200, result, message: "all comments retrieved" });
+    })
+    .catch((err: any) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ error: "error occured while retrieving all comments" });
+    });
+});
 //swagger setup
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJsdoc));
