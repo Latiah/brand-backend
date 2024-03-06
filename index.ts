@@ -149,6 +149,7 @@ app.post("/auth/login", async (req, res) => {
       success: true,
       message: "login success",
       token: token,
+      user: isUserExist,
     });
   } catch (error: any) {
     // Send the error message to the client
