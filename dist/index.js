@@ -139,6 +139,7 @@ app.post("/auth/login", (req, res) => __awaiter(void 0, void 0, void 0, function
             success: true,
             message: "login success",
             token: token,
+            user: isUserExist,
         });
     }
     catch (error) {
